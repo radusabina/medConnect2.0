@@ -60,6 +60,10 @@ const AIForm = () => {
   const sendAudioToBackend = async (blob) => {
     const formData = new FormData();
     formData.append("audio", blob, "recording.wav"); // Adaugă blob-ul audio în FormData
+    formData.append("sourceLanguage", sourceLanguage); // Adaugă limba sursă
+    formData.append("targetLanguage", targetLanguage); // Adaugă limba țintă
+
+    console.log(formData);
 
     try {
       const response = await fetch("http://127.0.0.1:5000/api/data", {
@@ -83,27 +87,62 @@ const AIForm = () => {
     audio.play();
   };
 
+  const handleSourceLanguageChange = (e) => setSourceLanguage(e.target.value);
+  const handleTargetLanguageChange = (e) => setTargetLanguage(e.target.value);
+
   return (
-    <div className="container">
-      <div>
-        <h2>Înregistrare audio:</h2>
+    <>
+      <div className="language-select-container">
+        <div>
+          <label htmlFor="sourceLanguage">Source language</label>
+          <select
+            id="sourceLanguage"
+            value={sourceLanguage}
+            onChange={handleSourceLanguageChange}
+          >
+            <option value="ro">Romanian</option>
+            <option value="en">English</option>
+            <option value="es">Spanish</option>
+            <option value="fr">French</option>
+            <option value="de">Deutsch</option>
+          </select>
+        </div>
+
+        <div>
+          <label htmlFor="targetLanguage">Target Language</label>
+          <select
+            id="targetLanguage"
+            value={targetLanguage}
+            onChange={handleTargetLanguageChange}
+          >
+            <option value="ro">Romanian</option>
+            <option value="en">English</option>
+            <option value="es">Spanish</option>
+            <option value="fr">French</option>
+            <option value="de">Deutsch</option>
+          </select>
+        </div>
+      </div>
+
+      <br></br>
+      <br></br>
+
+      <div className="recording-container">
         <button onClick={isRecording ? stopRecording : startRecording}>
-          {isRecording ? "Oprește înregistrarea" : "Înregistrează"}
+          {isRecording ? "Stop recording" : "Start recording"}
         </button>
 
-        {/* Show audio player only when translatedAudioURL exists */}
         {translatedAudioURL && (
-          <div>
+          <div className="audio-container">
             <audio
               key={translatedAudioURL}
               controls
               src={translatedAudioURL}
             ></audio>
-            <button onClick={handlePlayAudio}>Redă audio</button>
           </div>
         )}
       </div>
-    </div>
+    </>
   );
 };
 

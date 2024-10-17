@@ -1,6 +1,5 @@
 import openai
 import fitz
-import os
 
 
 def translate_text(text, start_language="Romanian",target_language="English"):

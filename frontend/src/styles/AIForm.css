@@ -1,87 +1,106 @@
-/* styles/AIForm.css */
-
-/* Stiluri generale */
 body {
-    font-family: 'Arial', sans-serif;
-    background-color: #f4f4f4;
-    margin: 0;
-    padding: 20px;
+  font-family: "Arial", sans-serif;
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 20px;
 }
 
-/* Container principal */
 .container {
-    max-width: 600px;
-    margin: 0 auto;
-    background: white;
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    padding: 20px;
+  max-width: 600px;
+  margin: 0 auto;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
 }
 
-/* Titluri */
 h2 {
-    color: #333;
+  color: #333;
 }
 
-/* Formulare */
 label {
-    display: block;
-    margin-bottom: 8px;
-    font-weight: bold;
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
 }
 
-select, textarea {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+select,
+textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
 }
 
-/* Butoane */
 button {
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    padding: 10px 15px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s ease;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 15px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
 }
 
 button:hover {
-    background-color: #0056b3;
+  background-color: #0056b3;
 }
 
-/* Lista traducerilor */
 ul {
-    list-style-type: none; /* Elimină stilul bulinei */
-    padding: 0; /* Elimină paddingul implicit */
+  list-style-type: none;
+  padding: 0;
 }
 
 li {
-    background: #f9f9f9;
-    padding: 10px;
-    margin: 10px 0;
-    border-radius: 4px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  background: #f9f9f9;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 4px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 li strong {
-    margin-right: 10px;
+  margin-right: 10px;
 }
 
-/* Buton de redare audio */
 audio {
-    margin-top: 10px;
-    width: 100%;
+  margin-top: 15px;
+  width: 80%;
 }
 
-/* Stiluri pentru mesajele de eroare */
 .error {
-    color: red;
-    font-weight: bold;
+  color: red;
+  font-weight: bold;
+}
+
+.language-select-container {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+
+.language-select-container div {
+  flex: 0 0 45%; /* Fiecare dropdown va ocupa 45% din lățimea containerului */
+  margin-right: 10px; /* Spațiu între dropdown-uri */
+}
+
+.language-select-container div:last-child {
+  margin-right: 30px; /* Elimină spațiul din dreapta ultimului dropdown */
+}
+
+select {
+  width: 70%; /* Fă-l să ocupe întreaga lățime a div-ului părinte */
+  padding: 10px; /* Marginea interioară a dropdown-ului */
+  border: 1px solid #ccc; /* Conturul dropdown-ului */
+  border-radius: 4px; /* Colțuri rotunjite */
+}
+
+.audio-container {
+  display: flex;
+  justify-content: center; /* Aliniază conținutul pe orizontală */
+  margin-top: 15px; /* Spațiu deasupra */
 }

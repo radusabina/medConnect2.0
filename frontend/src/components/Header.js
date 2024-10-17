@@ -1,10 +1,11 @@
 // src/components/Header.js
-import React from 'react';
+import React from "react";
+import "../styles/Header.css";
 
 const Header = () => {
   return (
     <header>
-      <h1>Aplicația mea de Traducere</h1>
+      <h1>MedConnect</h1>
     </header>
   );
 };

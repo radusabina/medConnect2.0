@@ -9,15 +9,14 @@ from pydub import AudioSegment
 
 load_dotenv()
 
-# Setați variabila de mediu GOOGLE_APPLICATION_CREDENTIALS
-os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = os.getenv("GOOGLE_APPLICATION_CREDENTIALS")
-openai_key = os.getenv("openai_api_key")
+credentials_path = os.getenv("GOOGLE_APPLICATION_CREDENTIALS")
+openai.api_key = os.getenv("openai_api_key")
 
 speech_client = speech.SpeechClient()
 tts_client = texttospeech.TextToSpeechClient()
 
 
-def speech_to_text(audio_file_path):
+def speech_to_text(audio_file_path, source_language):
     if audio_file_path.endswith(".wav"):
         audio = AudioSegment.from_wav(audio_file_path)
         audio = audio.set_channels(1)  # Convert to mono
@@ -36,7 +35,7 @@ def speech_to_text(audio_file_path):
     config = speech.RecognitionConfig(
         encoding=speech.RecognitionConfig.AudioEncoding.LINEAR16,
         sample_rate_hertz=48000,  # Ensure this matches your audio file
-        language_code="en-US"  # Source language (change if needed)
+        language_code=source_language  # Source language (change if needed)
     )
 
     response = speech_client.recognize(config=config, audio=audio)
@@ -67,11 +66,11 @@ def convert_audio_format(input_file="recording.wav", output_file="output.wav"):
 
 
 # Function to translate text using OpenAI (ChatGPT)
-def translate_text(text, start_language="Romanian",target_language="English"):
+def translate_text(text, start_language, target_language):
     prompt = (f"Translate the following sentence to {target_language} in a natural and fluent way: {text}. The sentence"
               f" is written in { start_language}")
 
-    response = openai.ChatCompletion.create(api_key=openai_key,
+    response = openai.ChatCompletion.create(
         model="gpt-3.5-turbo",
         messages=[
             {"role": "user", "content": prompt}
@@ -81,14 +80,13 @@ def translate_text(text, start_language="Romanian",target_language="English"):
     )
 
     translation = response['choices'][0]['message']['content']
-    return translation.strip()  # Adjusted to the new response format
+    return translation.strip()
 
 
-# Function to convert translated text to speech using Google Cloud Text-to-Speech
-def text_to_speech(translated_text, target_language_code="ro-RO"):
+def text_to_speech(translated_text, target_language):
     synthesis_input = texttospeech.SynthesisInput(text=translated_text)
     voice = texttospeech.VoiceSelectionParams(
-        language_code=target_language_code,
+        language_code=target_language,
         ssml_gender=texttospeech.SsmlVoiceGender.NEUTRAL
     )
     audio_config = texttospeech.AudioConfig(audio_encoding=texttospeech.AudioEncoding.MP3)
@@ -100,21 +98,19 @@ def text_to_speech(translated_text, target_language_code="ro-RO"):
     print("Audio content written to 'translated_audio.mp3'.")
 
 
-# Main function to run the Medu application
-def run_medu_application(input_audio_path):
+def run_medConnect_application(input_audio_path, source_language, target_language):
     print("Step 1: Performing speech-to-text...")
-    transcribed_text = speech_to_text(input_audio_path)
+    transcribed_text = speech_to_text(input_audio_path, source_language)
     print("Transcribed Text: ", transcribed_text)
 
-    if transcribed_text:  # Proceed only if transcription was successful
+    if transcribed_text:
         print("Step 2: Translating the text using OpenAI GPT...")
-        translated_text = translate_text(transcribed_text, target_language="Romanian")
+        translated_text = translate_text(transcribed_text, start_language=source_language, target_language=target_language)
         print("Translated Text: ", translated_text)
 
         print("Step 3: Converting translated text to speech...")
-        text_to_speech(translated_text, target_language_code="ro-RO")
+        text_to_speech(translated_text, target_language)  # Folosește target_language corect
 
         print("Translation complete. Audio saved as 'translated_audio.mp3'.")
     else:
         print("Transcription failed, skipping translation and TTS.")
-
