@@ -1,0 +1,87 @@
+/* styles/AIForm.css */
+
+/* Stiluri generale */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 20px;
+}
+
+/* Container principal */
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
+
+/* Titluri */
+h2 {
+    color: #333;
+}
+
+/* Formulare */
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+select, textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* Butoane */
+button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Lista traducerilor */
+ul {
+    list-style-type: none; /* Elimină stilul bulinei */
+    padding: 0; /* Elimină paddingul implicit */
+}
+
+li {
+    background: #f9f9f9;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 4px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+li strong {
+    margin-right: 10px;
+}
+
+/* Buton de redare audio */
+audio {
+    margin-top: 10px;
+    width: 100%;
+}
+
+/* Stiluri pentru mesajele de eroare */
+.error {
+    color: red;
+    font-weight: bold;
+}

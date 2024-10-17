@@ -1,0 +1,31 @@
+/* styles/Home.css */
+
+.home-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh; /* Face pagina să ocupe întregul viewport */
+    background-color: #f4f4f4; /* Fundal deschis */
+    text-align: center;
+}
+
+.button-container {
+    margin-top: 20px; /* Margine între titlu și butoane */
+}
+
+button {
+    background-color: #007bff; /* Culoare buton */
+    color: white; /* Culoare text */
+    border: none; /* Fără bordură */
+    border-radius: 4px; /* Colțuri rotunjite */
+    padding: 15px 30px; /* Spațiu în jurul textului */
+    margin: 10px; /* Margine între butoane */
+    font-size: 16px; /* Mărimea textului */
+    cursor: pointer; /* Cursor pointer la hover */
+    transition: background-color 0.3s; /* Tranziție pentru efectul hover */
+}
+
+button:hover {
+    background-color: #0056b3; /* Culoare buton la hover */
+}
