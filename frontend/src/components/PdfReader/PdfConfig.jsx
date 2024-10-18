@@ -1,0 +1,132 @@
+import React, { useState, useEffect } from "react";
+import "./PdfConfig.css";
+
+const PdfConfig = () => {
+  const [selectedFile, setSelectedFile] = useState(null);
+  const [extractedText, setExtractedText] = useState("");
+  const [translatedText, setTranslatedText] = useState("");
+  const [sourceLanguage, setSourceLanguage] = useState("en");
+  const [targetLanguage, setTargetLanguage] = useState("ro");
+
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    setSelectedFile(file);
+    setTranslatedText(""); // Golește textul tradus când se selectează un nou fișier
+    if (file) {
+      handleUpload(file, sourceLanguage, targetLanguage); // Încarcă automat fișierul selectat
+    }
+  };
+
+  const handleSourceLanguageChange = (e) => {
+    setSourceLanguage(e.target.value);
+  };
+
+  const handleTargetLanguageChange = (e) => {
+    setTargetLanguage(e.target.value);
+  };
+
+  const handleUpload = async (file, sourceLang, targetLang) => {
+    if (!file) {
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append("file", file);
+    formData.append("sourceLanguage", sourceLang); // Adaugă limba sursă selectată
+    formData.append("targetLanguage", targetLang); // Adaugă limba țintă selectată
+
+    try {
+      const response = await fetch("http://127.0.0.1:5000/upload", {
+        method: "POST",
+        body: formData,
+      });
+
+      const responseData = await response.json();
+      console.log("Response Data:", responseData);
+
+      if (response.ok) {
+        setTranslatedText(responseData.translatedText);
+        setExtractedText(responseData.extractedText || "");
+      } else {
+        console.error("Error:", responseData);
+        alert(`Error: ${responseData.message}`);
+      }
+    } catch (error) {
+      console.error("Upload error:", error);
+    }
+  };
+
+  useEffect(() => {
+    if (selectedFile) {
+      handleUpload(selectedFile, sourceLanguage, targetLanguage);
+    }
+  }, [targetLanguage]);
+
+  return (
+    <div className="patient-data-container">
+      <h1>File Upload</h1>
+      <p>
+        You can upload PDF, DOCX, or PNG files and view the extracted content
+        here.
+      </p>
+
+      <div className="file-upload">
+        <input
+          type="file"
+          accept=".pdf, .docx, .png, .jpeg"
+          onChange={handleFileChange}
+        />
+
+        {/* Dropdown pentru limba sursă */}
+        <select value={sourceLanguage} onChange={handleSourceLanguageChange}>
+          <option value="en">English</option>
+          <option value="ro">Romanian</option>
+          <option value="fr">French</option>
+          <option value="de">German</option>
+          <option value="es">Spanish</option>
+          {/* Adaugă mai multe limbi dacă este nevoie */}
+        </select>
+
+        {/* Dropdown pentru limba țintă */}
+        <select value={targetLanguage} onChange={handleTargetLanguageChange}>
+          <option value="en">English</option>
+          <option value="ro">Romanian</option>
+          <option value="fr">French</option>
+          <option value="de">German</option>
+          <option value="es">Spanish</option>
+          {/* Adaugă mai multe limbi dacă este nevoie */}
+        </select>
+      </div>
+
+      {/* Afișare text extras */}
+      {extractedText && (
+        <div className="extracted-text-container">
+          <h2>Extracted Text</h2>
+          <div className="extracted-text-box">
+            {extractedText.split("\n").map((line, index) => (
+              <p key={index}>{line}</p>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* Afișare text tradus */}
+      <div className="translated-text-container">
+        <textarea
+          id="translatedText"
+          value={translatedText}
+          readOnly
+          rows={5}
+          style={{
+            width: "80%",
+            resize: "none",
+            marginTop: 50,
+            height: 200,
+          }}
+        />
+      </div>
+    </div>
+  );
+};
+
+export default PdfConfig;

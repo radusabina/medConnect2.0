@@ -1,5 +1,7 @@
 import React, { useState, useRef } from "react";
-import "../styles/AIForm.css";
+import "./AIForm.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faExchangeAlt } from "@fortawesome/free-solid-svg-icons";
 
 const AIForm = () => {
   const [sourceLanguage, setSourceLanguage] = useState("ro");
@@ -23,7 +25,7 @@ const AIForm = () => {
       mediaRecorderRef.current.start();
       setIsRecording(true);
     } catch (error) {
-      console.error("Eroare la începutul înregistrării:", error);
+      console.error("Error starting recording:", error);
     }
   };
 
@@ -52,7 +54,6 @@ const AIForm = () => {
         const { audio_url, transcribed_text } = await response.json();
 
         setTranslatedText((prevText) => prevText + "\n" + transcribed_text);
-
         setTranslatedAudioURL(audio_url);
       } else {
         console.error("Failed to get translated audio.");
@@ -65,22 +66,16 @@ const AIForm = () => {
   const handleSourceLanguageChange = (e) => setSourceLanguage(e.target.value);
   const handleTargetLanguageChange = (e) => setTargetLanguage(e.target.value);
 
+  const switchLanguages = () => {
+    setSourceLanguage((prev) => {
+      const newTarget = targetLanguage;
+      setTargetLanguage(prev);
+      return newTarget;
+    });
+  };
+
   return (
     <>
-      <div className="navbar">
-        <nav>
-          <label className="logo">MedConnect</label>
-          <ul className="nav-links">
-            <li>
-              <a href="/pdf-config">Pdf Config</a>
-            </li>
-            <li>
-              <a href="/live-chat">Live Chat</a>
-            </li>
-          </ul>
-        </nav>
-      </div>
-
       <div className="language-select-container">
         <div>
           <label htmlFor="sourceLanguage">Source language</label>
@@ -96,6 +91,10 @@ const AIForm = () => {
             <option value="de">Deutsch</option>
           </select>
         </div>
+
+        <button onClick={switchLanguages} className="switch-button">
+          <FontAwesomeIcon icon={faExchangeAlt} />
+        </button>
 
         <div>
           <label htmlFor="targetLanguage">Target Language</label>
@@ -113,8 +112,8 @@ const AIForm = () => {
         </div>
       </div>
 
-      <br></br>
-      <br></br>
+      <br />
+      <br />
 
       <div className="recording-container">
         <button onClick={isRecording ? stopRecording : startRecording}>
@@ -145,12 +144,6 @@ const AIForm = () => {
             value={translatedText}
             readOnly
             rows={5}
-            style={{
-              width: "70%",
-              resize: "none",
-              marginTop: 50,
-              height: 200,
-            }}
           />
         </div>
       </div>
