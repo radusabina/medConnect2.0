@@ -14,7 +14,7 @@ import fitz
 
 
 app = Flask(__name__)
-CORS(app, origins="*")
+CORS(app, origins=["http://localhost:3000"])
 
 
 @app.route('/api/data', methods=['GET', 'POST'])
@@ -93,7 +93,6 @@ def upload_file():
                 extracted_text += paragraph.text + '\n'
 
 
-        # Codul tău din upload_file()
 
         elif file and file.filename.lower().endswith(('.png', '.jpg', '.jpeg', '.bmp')):
             image = Image.open(file)
