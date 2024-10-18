@@ -1,3 +1,5 @@
+import cv2
+import numpy as np
 from flask import Flask, request, jsonify, send_file, url_for
 from flask_cors import CORS
 from pytesseract import pytesseract
@@ -5,9 +7,9 @@ from pytesseract import pytesseract
 from pdfTranslator import generate_unique_filename, preprocess_image
 from speechToText import convert_audio_format, run_medConnect_application, translate_text
 import os
-from PIL import Image
+import tempfile
+from PIL import Image, ImageEnhance
 from docx import Document
-from googletrans import Translator
 import fitz
 
 
@@ -65,53 +67,52 @@ def get_translated_audio():
 def upload_file():
     if 'file' not in request.files:
         return "No file was sent.", 400
-
     file = request.files['file']
+    source_language = request.form.get('sourceLanguage')
+    target_language = request.form.get('targetLanguage')
 
-    print("Pana aici merge")
-
+    print(
+        source_language, target_language
+    )
     if file.filename == '':
         return "The filename is empty.", 400
 
-    extracted_text = ''  # Initialize extracted text
-    output_pdf_path = None  # Initialize path for PDF
-    target_language = request.form.get('targetLanguage', 'en')  # Get target language from form data
+    extracted_text = ''
 
     try:
-        # Process the uploaded file without saving the original
         if file and file.filename.endswith('.pdf'):
-            print("Pana aici merge pdf exista")
-            # Extract text from PDF without saving it
-            doc = fitz.open(stream=file.read(), filetype='pdf')  # Open PDF directly from file stream
+            doc = fitz.open(stream=file.read(), filetype='pdf')
             for page in doc:
                 text = page.get_text()
                 extracted_text += text
             doc.close()
-            print("S-a citit fisierul")
 
         elif file and file.filename.endswith('.docx'):
-            # Extract text from DOCX without saving it
-            doc = Document(file)  # Open DOCX directly from file
+            doc = Document(file)
             for paragraph in doc.paragraphs:
                 extracted_text += paragraph.text + '\n'
 
+
+        # Codul tău din upload_file()
+
         elif file and file.filename.lower().endswith(('.png', '.jpg', '.jpeg', '.bmp')):
-            image = Image.open(file.stream)  # Open image directly from file stream
-            preprocessed_image = preprocess_image(image)
-            extracted_text = pytesseract.image_to_string(preprocessed_image)
-            print(extracted_text)
+            image = Image.open(file)
+            image_cv = cv2.cvtColor(np.array(image), cv2.COLOR_RGB2BGR)
+            preprocessed_image = preprocess_image(image_cv)
+            extracted_text = pytesseract.image_to_string(preprocessed_image, lang='eng')
+
+
+
 
         else:
             return "Invalid file format. Please upload a PDF, DOCX, or image.", 400
 
-        translated_text = translate_text(extracted_text, "en", "ro")
-        print("S-a tradus textul")
-
-        print(translated_text)
+        translated_text = translate_text(extracted_text, source_language, target_language)
 
         return jsonify({"translatedText": translated_text})
 
     except Exception as e:
+        print(e)
         return f"An error occurred: {str(e)}", 500
 
 

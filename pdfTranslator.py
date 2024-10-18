@@ -1,5 +1,6 @@
 import pytesseract
 import os
+import cv2
 
 
 pytesseract.pytesseract.tesseract_cmd = os.getenv("tesseract")
@@ -15,16 +16,21 @@ def generate_unique_filename(directory, base_name, extension):
         counter += 1
 
 
+import cv2
+import numpy as np
+
 def preprocess_image(image):
-    gray_image = image.convert('L')
-    binary_image = gray_image.point(lambda x: 0 if x < 128 else 255, '1')
-    return binary_image
+    if isinstance(image, str):
+        image = cv2.imread(image)
+
+    if image is None:
+        raise ValueError("Image not found or unable to read.")
+
+    gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+
+    # Aplicarea unui threshold
+    _, thresh = cv2.threshold(gray, 150, 255, cv2.THRESH_BINARY_INV)
+
+    return thresh
 
 
-
-
-# Initialize 'uploads' directory
-if __name__ == '__main__':
-    if not os.path.exists('uploads'):
-        os.makedirs('uploads')
-    app.run(debug=True)
