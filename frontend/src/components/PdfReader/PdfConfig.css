@@ -1,65 +1,68 @@
 .patient-data-container {
-  max-width: 600px; /* Lățimea maximă a containerului */
-  margin: 0 auto; /* Centrarea pe orizontală */
-  padding: 20px; /* Spațiu interior */
-  background-color: rgba(255, 255, 255, 0.9); /* Fundal alb semitransparent */
-  border-radius: 10px; /* Colțuri rotunjite */
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Umbra */
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
 h1 {
-  font-size: 2rem; /* Dimensiunea titlului */
-  color: #282c34; /* Culoarea titlului */
-  margin-bottom: 10px; /* Spațiu sub titlu */
+  font-size: 2rem;
+  color: #282c34;
+  margin-bottom: 10px;
 }
 
 p {
-  font-size: 1rem; /* Dimensiunea textului */
-  color: #666; /* Culoarea textului */
-  margin-bottom: 20px; /* Spațiu sub paragraf */
+  font-size: 1rem;
+  color: #666;
+  margin-bottom: 20px;
 }
 
 .file-upload {
-  display: flex; /* Folosește flexbox pentru a alinia elementele */
-  align-items: center; /* Centrează pe verticală */
-  gap: 10px; /* Spațiu între elemente */
-  margin-bottom: 20px; /* Spațiu sub caseta de încărcare */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
 }
 
-input[type="file"] {
-  padding: 10px; /* Spațiu interior */
-  border: 2px solid #007bff; /* Bordură */
-  border-radius: 5px; /* Colțuri rotunjite */
-  outline: none; /* Fără outline */
-  cursor: pointer; /* Cursor pointer */
+.file-upload select {
+  margin-bottom: 10px;
+}
+
+.file-upload input[type="file"] {
+  padding: 10px;
+  border: 2px solid #007bff;
+  border-radius: 5px;
+  outline: none;
+  cursor: pointer;
+  margin-left: 20px;
 }
 
 button {
-  background-color: #007bff; /* Culoarea de fundal a butonului */
-  color: #282c34; /* Culoarea textului butonului */
-  border: none; /* Fără borduri */
-  border-radius: 5px; /* Colțuri rotunjite */
-  padding: 10px 20px; /* Spațiu interior */
-  font-size: 1rem; /* Dimensiunea fontului */
-  cursor: pointer; /* Cursor pointer */
-  transition: background-color 0.3s, transform 0.3s; /* Transiție pentru efecte */
+  background-color: #007bff;
+  color: #282c34;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
 }
 
-/* Efect la hover pentru butoane */
 button:hover {
-  background-color: #21a1f1; /* Culoare mai închisă la hover */
-  transform: scale(1.05); /* Mărire la hover */
+  background-color: #21a1f1;
+  transform: scale(1.05);
 }
 
-/* Stilizare pentru lista pacienților */
 ul {
-  list-style-type: none; /* Fără buline */
-  padding: 0; /* Fără padding */
+  list-style-type: none;
+  padding: 0;
 }
 
 li {
-  background-color: #f4f4f4; /* Fundal pentru fiecare element al listei */
-  margin: 10px 0; /* Spațiu între elemente */
+  background-color: #f4f4f4;
+  margin: 10px 0;
   padding: 10px;
   border-radius: 5px;
   display: flex;
@@ -83,4 +86,15 @@ strong {
 .text-to-translate-box {
   max-height: 300px;
   overflow-y: auto;
+}
+
+.file-upload select {
+  width: 100%;
+  max-width: 200px;
+  margin-bottom: 10px;
+  margin-left: 50px;
+}
+
+.file-upload label {
+  margin-left: 50px;
 }

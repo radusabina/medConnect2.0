@@ -107,76 +107,6 @@ select {
   margin-top: 15px;
 }
 
-/* .navbar {
-  background-color: #333;
-  color: #fff;
-  padding: 1rem;
-}
-
-.navbar nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.logo {
-  font-size: 1.5rem;
-}
-
-.navbar {
-  background-color: #007bff;
-  color: #fff;
-  padding: 0.25rem 0.5rem;
-}
-
-.navbar nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.logo {
-  font-size: 2rem;
-}
-
-.nav-links,
-.nav-options {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-}
-
-.nav-links li,
-.nav-options li {
-  margin-left: 20px;
-  background-color: #007bff;
-  border-radius: 4px;
-}
-
-.nav-links a,
-.nav-options a {
-  color: #fff;
-  text-decoration: none;
-  font-weight: normal;
-  padding: 5px 10px;
-  transition: background-color 0.3s ease;
-}
-
-.nav-links a:hover,
-.nav-options a:hover {
-  background-color: rgba(255, 255, 255, 0.2);
-}
-
-.nav-options {
-  margin-left: auto;
-} */
-
-
-
-
-
-
 .translated-text-container {
   margin-top: 50px;
   display: flex;
@@ -193,7 +123,7 @@ select {
   font-size: 16px;
   font-family: Arial, sans-serif;
   background-color: #f9f9f9;
-  overflow: auto; 
+  overflow: auto;
 }
 
 .translated-text-container textarea:focus {
@@ -202,16 +132,14 @@ select {
   box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
 }
 
-
-
 .switch-button {
-  background: none; /* Transparent background */
-  border: none; /* Remove default border */
-  cursor: pointer; /* Pointer cursor on hover */
-  padding: 0; /* No padding */
-  margin-left: 10px; /* Spacing from the dropdowns */
-  font-size: 20px; /* Adjust size as needed */
-  color: #333; /* Icon color */
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  margin-left: 10px;
+  font-size: 20px;
+  color: #333;
 }
 
 html,
@@ -323,76 +251,6 @@ select {
   margin-top: 15px;
 }
 
-/* .navbar {
-  background-color: #333;
-  color: #fff;
-  padding: 1rem;
-}
-
-.navbar nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.logo {
-  font-size: 1.5rem;
-}
-
-.navbar {
-  background-color: #007bff;
-  color: #fff;
-  padding: 0.25rem 0.5rem;
-}
-
-.navbar nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.logo {
-  font-size: 2rem;
-}
-
-.nav-links,
-.nav-options {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-}
-
-.nav-links li,
-.nav-options li {
-  margin-left: 20px;
-  background-color: #007bff;
-  border-radius: 4px;
-}
-
-.nav-links a,
-.nav-options a {
-  color: #fff;
-  text-decoration: none;
-  font-weight: normal;
-  padding: 5px 10px;
-  transition: background-color 0.3s ease;
-}
-
-.nav-links a:hover,
-.nav-options a:hover {
-  background-color: rgba(255, 255, 255, 0.2);
-}
-
-.nav-options {
-  margin-left: auto;
-} */
-
-
-
-
-
-
 .translated-text-container {
   margin-top: 50px;
   display: flex;
@@ -409,7 +267,7 @@ select {
   font-size: 16px;
   font-family: Arial, sans-serif;
   background-color: #f9f9f9;
-  overflow: auto; 
+  overflow: auto;
 }
 
 .translated-text-container textarea:focus {
@@ -418,23 +276,18 @@ select {
   box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
 }
 
-
-
 .switch-button {
-  background: none; /* Transparent background */
-  border: none; /* Remove default border */
-  cursor: pointer; /* Pointer cursor on hover */
-  padding: 0; /* No padding */
-  margin-left: 10px; /* Spacing from the dropdowns */
-  font-size: 20px; /* Adjust size as needed */
-  color: #333; /* Icon color */
-  transition: transform 0.3s ease; /* Smooth transition for the rotation */
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  margin-left: 10px;
+  font-size: 20px;
+  color: #333;
+  transition: transform 0.3s ease;
 }
 
-/* Rotation effect on hover */
 .switch-button:hover {
-  transform: rotate(180deg); /* Rotate 180 degrees */
+  transform: rotate(180deg);
   background: none;
 }
-
-

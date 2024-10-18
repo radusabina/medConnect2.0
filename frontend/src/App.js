@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import AIForm from "./components/AIForm/AIForm.jsx";
-import PdfConfig from "./components/PdfReader/PdfConfig.jsx"; // Ensure this import is correct
+import PdfConfig from "./components/PdfReader/PdfConfig.jsx";
 import "./styles/App.css";
-// import axios from "axios";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 import Navbar from "./components/Navbar/Navbar.jsx";

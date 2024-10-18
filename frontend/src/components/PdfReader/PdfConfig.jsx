@@ -11,9 +11,9 @@ const PdfConfig = () => {
   const handleFileChange = (e) => {
     const file = e.target.files[0];
     setSelectedFile(file);
-    setTranslatedText(""); // Golește textul tradus când se selectează un nou fișier
+    setTranslatedText("");
     if (file) {
-      handleUpload(file, sourceLanguage, targetLanguage); // Încarcă automat fișierul selectat
+      handleUpload(file, sourceLanguage, targetLanguage);
     }
   };
 
@@ -32,8 +32,8 @@ const PdfConfig = () => {
 
     const formData = new FormData();
     formData.append("file", file);
-    formData.append("sourceLanguage", sourceLang); // Adaugă limba sursă selectată
-    formData.append("targetLanguage", targetLang); // Adaugă limba țintă selectată
+    formData.append("sourceLanguage", sourceLang);
+    formData.append("targetLanguage", targetLang);
 
     try {
       const response = await fetch("http://127.0.0.1:5000/upload", {
@@ -64,41 +64,40 @@ const PdfConfig = () => {
 
   return (
     <div className="patient-data-container">
-      <h1>File Upload</h1>
+      <h1>Receipt Upload</h1>
       <p>
         You can upload PDF, DOCX, or PNG files and view the extracted content
         here.
       </p>
 
       <div className="file-upload">
+        <div>
+          <label htmlFor="targetLanguage">Source Language</label>
+          <select value={sourceLanguage} onChange={handleSourceLanguageChange}>
+            <option value="en">English</option>
+            <option value="ro">Romanian</option>
+            <option value="fr">French</option>
+            <option value="de">German</option>
+            <option value="es">Spanish</option>
+          </select>
+
+          <label htmlFor="targetLanguage">Target Language</label>
+          <select value={targetLanguage} onChange={handleTargetLanguageChange}>
+            <option value="en">English</option>
+            <option value="ro">Romanian</option>
+            <option value="fr">French</option>
+            <option value="de">German</option>
+            <option value="es">Spanish</option>
+          </select>
+        </div>
+
         <input
           type="file"
           accept=".pdf, .docx, .png, .jpeg"
           onChange={handleFileChange}
         />
-
-        {/* Dropdown pentru limba sursă */}
-        <select value={sourceLanguage} onChange={handleSourceLanguageChange}>
-          <option value="en">English</option>
-          <option value="ro">Romanian</option>
-          <option value="fr">French</option>
-          <option value="de">German</option>
-          <option value="es">Spanish</option>
-          {/* Adaugă mai multe limbi dacă este nevoie */}
-        </select>
-
-        {/* Dropdown pentru limba țintă */}
-        <select value={targetLanguage} onChange={handleTargetLanguageChange}>
-          <option value="en">English</option>
-          <option value="ro">Romanian</option>
-          <option value="fr">French</option>
-          <option value="de">German</option>
-          <option value="es">Spanish</option>
-          {/* Adaugă mai multe limbi dacă este nevoie */}
-        </select>
       </div>
 
-      {/* Afișare text extras */}
       {extractedText && (
         <div className="extracted-text-container">
           <h2>Extracted Text</h2>
@@ -110,7 +109,6 @@ const PdfConfig = () => {
         </div>
       )}
 
-      {/* Afișare text tradus */}
       <div className="translated-text-container">
         <textarea
           id="translatedText"
