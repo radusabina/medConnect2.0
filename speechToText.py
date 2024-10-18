@@ -19,14 +19,14 @@ tts_client = texttospeech.TextToSpeechClient()
 def speech_to_text(audio_file_path, source_language):
     if audio_file_path.endswith(".wav"):
         audio = AudioSegment.from_wav(audio_file_path)
-        audio = audio.set_channels(1)  # Convert to mono
-        audio_file_path = "temp_mono.wav"  # Temporary WAV file for processing
-        audio.export(audio_file_path, format="wav")  # Export as WAV for processing
+        audio = audio.set_channels(1)
+        audio_file_path = "temp_mono.wav"
+        audio.export(audio_file_path, format="wav")
     else:
         audio = AudioSegment.from_file(audio_file_path)
-        audio = audio.set_channels(1)  # Convert to mono
-        audio_file_path = "temp_mono.wav"  # Temporary WAV file for processing
-        audio.export(audio_file_path, format="wav")  # Export as WAV for processing
+        audio = audio.set_channels(1)
+        audio_file_path = "temp_mono.wav"
+        audio.export(audio_file_path, format="wav")
 
     with io.open(audio_file_path, "rb") as audio_file:
         audio_content = audio_file.read()
@@ -76,7 +76,7 @@ def translate_text(text, start_language, target_language):
             {"role": "user", "content": prompt}
         ],
         temperature=0.05,
-        max_tokens=200
+        max_tokens=500
     )
 
     translation = response['choices'][0]['message']['content']
@@ -100,7 +100,7 @@ def text_to_speech(translated_text, target_language):
 
 def run_medConnect_application(input_audio_path, source_language, target_language):
     print("Step 1: Performing speech-to-text...")
-    transcribed_text = speech_to_text(input_audio_path, source_language)
+    transcribed_text = "Source language:" + speech_to_text(input_audio_path, source_language) + "\n"
     print("Transcribed Text: ", transcribed_text)
 
     if transcribed_text:
@@ -109,8 +109,11 @@ def run_medConnect_application(input_audio_path, source_language, target_languag
         print("Translated Text: ", translated_text)
 
         print("Step 3: Converting translated text to speech...")
-        text_to_speech(translated_text, target_language)  # Folosește target_language corect
+        text_to_speech(translated_text, target_language)
+
+        transcribed_text += "Target language: " + translated_text + "\n"
 
         print("Translation complete. Audio saved as 'translated_audio.mp3'.")
+        return transcribed_text
     else:
         print("Transcription failed, skipping translation and TTS.")

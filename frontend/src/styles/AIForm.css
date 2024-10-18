@@ -1,8 +1,9 @@
+html,
 body {
-  font-family: "Arial", sans-serif;
-  background-color: #f4f4f4;
+  height: 100%;
   margin: 0;
-  padding: 20px;
+  padding: 0;
+  overflow-x: hidden;
 }
 
 .container {
@@ -78,29 +79,95 @@ audio {
 }
 
 .language-select-container {
+  margin-top: 40px;
   display: flex;
   justify-content: space-between;
   margin-bottom: 15px;
 }
 
 .language-select-container div {
-  flex: 0 0 45%; /* Fiecare dropdown va ocupa 45% din lățimea containerului */
-  margin-right: 10px; /* Spațiu între dropdown-uri */
+  flex: 0 0 45%;
+  margin-right: 10px;
 }
 
 .language-select-container div:last-child {
-  margin-right: 30px; /* Elimină spațiul din dreapta ultimului dropdown */
+  margin-right: 30px;
 }
 
 select {
-  width: 70%; /* Fă-l să ocupe întreaga lățime a div-ului părinte */
-  padding: 10px; /* Marginea interioară a dropdown-ului */
-  border: 1px solid #ccc; /* Conturul dropdown-ului */
-  border-radius: 4px; /* Colțuri rotunjite */
+  width: 70%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
 }
 
 .audio-container {
   display: flex;
-  justify-content: center; /* Aliniază conținutul pe orizontală */
-  margin-top: 15px; /* Spațiu deasupra */
+  justify-content: center;
+  margin-top: 15px;
+}
+
+.navbar {
+  background-color: #333; /* Background color */
+  color: #fff; /* Text color */
+  padding: 1rem; /* Padding */
+}
+
+.navbar nav {
+  display: flex; /* Use flexbox for layout */
+  justify-content: space-between; /* Space between elements */
+  align-items: center; /* Center items vertically */
+}
+
+.logo {
+  font-size: 1.5rem; /* Logo font size */
+}
+
+.navbar {
+  background-color: #007bff; /* Change to blue */
+  color: #fff; /* Text color */
+  padding: 0.25rem 0.5rem; /* Reduce padding for a thinner navbar */
+}
+
+.navbar nav {
+  display: flex; /* Use flexbox for layout */
+  justify-content: space-between; /* Space between elements */
+  align-items: center; /* Center items vertically */
+}
+
+.logo {
+  font-size: 2rem; /* Logo font size */
+}
+
+.nav-links,
+.nav-options {
+  list-style: none; /* Remove list styling */
+  padding: 0; /* Remove padding */
+  margin: 0; /* Remove margin */
+  display: flex; /* Use flexbox for horizontal layout */
+}
+
+.nav-links li,
+.nav-options li {
+  margin-left: 20px; /* Space between nav items */
+  background-color: #007bff; /* Blue background for list items */
+  border-radius: 4px; /* Optional: add rounded corners */
+}
+
+.nav-links a,
+.nav-options a {
+  color: #fff; /* Link color */
+  text-decoration: none; /* Remove underline */
+  font-weight: normal; /* Make the font normal weight */
+  padding: 5px 10px; /* Add padding for better click area */
+  transition: background-color 0.3s ease; /* Add transition */
+}
+
+.nav-links a:hover,
+.nav-options a:hover {
+  background-color: rgba(255, 255, 255, 0.2); /* Hover effect */
+}
+
+.nav-options {
+  margin-left: auto; /* Push the nav options to the right */
 }
