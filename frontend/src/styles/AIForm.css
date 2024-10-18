@@ -108,66 +108,66 @@ select {
 }
 
 .navbar {
-  background-color: #333; /* Background color */
-  color: #fff; /* Text color */
-  padding: 1rem; /* Padding */
+  background-color: #333;
+  color: #fff;
+  padding: 1rem;
 }
 
 .navbar nav {
-  display: flex; /* Use flexbox for layout */
-  justify-content: space-between; /* Space between elements */
-  align-items: center; /* Center items vertically */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .logo {
-  font-size: 1.5rem; /* Logo font size */
+  font-size: 1.5rem;
 }
 
 .navbar {
-  background-color: #007bff; /* Change to blue */
-  color: #fff; /* Text color */
-  padding: 0.25rem 0.5rem; /* Reduce padding for a thinner navbar */
+  background-color: #007bff;
+  color: #fff;
+  padding: 0.25rem 0.5rem;
 }
 
 .navbar nav {
-  display: flex; /* Use flexbox for layout */
-  justify-content: space-between; /* Space between elements */
-  align-items: center; /* Center items vertically */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .logo {
-  font-size: 2rem; /* Logo font size */
+  font-size: 2rem;
 }
 
 .nav-links,
 .nav-options {
-  list-style: none; /* Remove list styling */
-  padding: 0; /* Remove padding */
-  margin: 0; /* Remove margin */
-  display: flex; /* Use flexbox for horizontal layout */
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
 }
 
 .nav-links li,
 .nav-options li {
-  margin-left: 20px; /* Space between nav items */
-  background-color: #007bff; /* Blue background for list items */
-  border-radius: 4px; /* Optional: add rounded corners */
+  margin-left: 20px;
+  background-color: #007bff;
+  border-radius: 4px;
 }
 
 .nav-links a,
 .nav-options a {
-  color: #fff; /* Link color */
-  text-decoration: none; /* Remove underline */
-  font-weight: normal; /* Make the font normal weight */
-  padding: 5px 10px; /* Add padding for better click area */
-  transition: background-color 0.3s ease; /* Add transition */
+  color: #fff;
+  text-decoration: none;
+  font-weight: normal;
+  padding: 5px 10px;
+  transition: background-color 0.3s ease;
 }
 
 .nav-links a:hover,
 .nav-options a:hover {
-  background-color: rgba(255, 255, 255, 0.2); /* Hover effect */
+  background-color: rgba(255, 255, 255, 0.2);
 }
 
 .nav-options {
-  margin-left: auto; /* Push the nav options to the right */
+  margin-left: auto;
 }
